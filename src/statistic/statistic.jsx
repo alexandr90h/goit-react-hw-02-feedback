@@ -2,6 +2,8 @@
 import React from 'react';
 import styles from './statistic.module.scss';
 import StatisticItem from './statisticItem';
+import FeedbackOptions from './feedbackOptions';
+import Notification from './notification';
 
 class Statistic extends React.Component{
     state = {
@@ -37,13 +39,19 @@ class Statistic extends React.Component{
         return (
             <div className={styles.conteinerStats}>
                 <h2>Please leave feedback</h2>
-                <div className={styles.conteinerButton}>
-                    <button type='button' onClick={this.decrementGood}>Good</button>
-                    <button type='button' onClick={this.decrementNeutral}>Neutral</button>
-                    <button type='button' onClick={this.decrementBad}>Bad</button>
-                </div>
+                <FeedbackOptions
+                    good={this.decrementGood}
+                    neutral={this.decrementNeutral}
+                    bad={this.decrementBad}
+                />
                 <h2>Statistics</h2>
-                <StatisticItem/>
+                {this.state.good !== 0 ? <StatisticItem
+                    good={this.state.good}
+                    neutral={this.state.neutral}
+                    bad={this.state.bad}
+                    total={<this.countTotalFeedback/>}
+                    positivePercentage={<this.countPositiveFeedbackPercentage/>}
+                />: <Notification message="No feedback given"/> }
             </div>
         )
     }

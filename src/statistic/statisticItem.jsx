@@ -1,10 +1,10 @@
-export default function StatisticItem({ good, neutral,bad,total,positivFeelback}) {
-    <ul>
+export default function StatisticItem({ good, neutral,bad,total,positivePercentage}) {
+   return (<ul>
         <li>Good: {good}</li>
         <li>Neutral: {neutral}</li>
         <li>Bad: {bad}</li>
-        <li>Total: <this.countTotalFeedback /></li>
-        <li>Positive feedback: <this.countPositiveFeedbackPercentage />%</li>
-    </ul>
+        <li>Total: {total}</li>
+        <li>Positive feedback: {positivePercentage}%</li>
+    </ul>)
 
 }
