@@ -1,7 +1,7 @@
 // import Props from 'prop-types';
 import React from 'react';
-
 import styles from './statistic.module.scss';
+import StatisticItem from './statisticItem';
 
 class Statistic extends React.Component{
     state = {
@@ -27,6 +27,12 @@ class Statistic extends React.Component{
     countTotalFeedback = () => {
         return (this.state.good+this.state.neutral+this.state.bad);
     }
+    countPositiveFeedbackPercentage = () => {
+        if (this.state.good === 0) {
+            return(0)
+        }
+        return(Math.round(this.state.good/(this.state.good+this.state.neutral+this.state.bad)*100))
+    }
     render() {
         return (
             <div className={styles.conteinerStats}>
@@ -37,13 +43,7 @@ class Statistic extends React.Component{
                     <button type='button' onClick={this.decrementBad}>Bad</button>
                 </div>
                 <h2>Statistics</h2>
-                <ul>
-                    <li>Good: {this.state.good}</li>
-                    <li>Neutral: {this.state.neutral}</li>
-                    <li>Bad: {this.state.bad}</li>
-                    <li>Total: <this.countTotalFeedback/></li>
-                    <li>Positive feedback:%</li>
-                </ul>
+                <StatisticItem/>
             </div>
         )
     }
