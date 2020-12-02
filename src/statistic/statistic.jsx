@@ -45,7 +45,7 @@ class Statistic extends React.Component{
                     bad={this.decrementBad}
                 />
                 <h2>Statistics</h2>
-                {this.state.good !== 0 ? <StatisticItem
+                {(this.state.good+this.state.neutral+this.state.bad) !== 0 ? <StatisticItem
                     good={this.state.good}
                     neutral={this.state.neutral}
                     bad={this.state.bad}
